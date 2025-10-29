@@ -1,10 +1,3 @@
-# 🧑‍💻 Curso de Especialización en Ciberseguridad
-
-Bienvenido al repositorio de proyectos desarrollados durante el curso.  
-Aquí se recopilan los trabajos y prácticas de las diferentes asignaturas del módulo.
-
----
-
 ## 📚 Asignaturas
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; justify-items: center; align-items: stretch;">
