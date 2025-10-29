@@ -1,21 +1,36 @@
-# 💻 Curso de Especialización en Ciberseguridad
+# 🧑‍💻 Curso de Especialización en Ciberseguridad
 
-Bienvenido a la recopilación de proyectos realizados durante el curso.  
-Cada sección corresponde a una asignatura del módulo profesional.
+Bienvenido a la página de proyectos del curso.  
+Aquí se recopilan las prácticas y trabajos desarrollados en las distintas asignaturas del módulo.
 
 ---
 
 ## 📚 Asignaturas
 
-| Asignatura | Descripción | Enlace |
-|-------------|--------------|--------|
-| 🛡️ **Hacking Ético** | Auditorías, pruebas de penetración y explotación de sistemas controlados. | [Ver proyectos](hacking.md) |
-| 🔍 **Análisis Forense** | Investigación digital y recuperación de evidencias. | [Ver proyectos](forense.md) |
-| 🧱 **Bastionado de Redes y Sistemas** | Endurecimiento de configuraciones y medidas de seguridad. | [Ver proyectos](bastionado.md) |
-| ⚙️ **Puesta en Producción Segura** | Despliegue seguro de aplicaciones y servicios. | [Ver proyectos](produccion.md) |
-| 📜 **Normativa de Ciberseguridad** | Cumplimiento legal, normas y buenas prácticas en seguridad. | [Ver proyectos](normativa.md) |
-| 🚨 **Incidentes de Ciberseguridad** | Análisis, respuesta y mitigación de incidentes. | [Ver proyectos](incidentes.md) |
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
 
----
+  <div style="border:1px solid #ccc;border-radius:10px;width:280px;padding:15px;background:#fff;box-shadow:2px 2px 6px rgba(0,0,0,0.1);">
+    <h3 style="color:#0366d6;">🌐 Redes Seguras</h3>
+    <p>Configuración y aseguramiento de infraestructuras de red.</p>
+    <a href="redes.md" style="text-decoration:none;color:white;background:#0366d6;padding:8px 12px;border-radius:6px;">Ver proyectos</a>
+  </div>
 
-🧠 *Esta página ha sido creada con GitHub Pages y el tema Minimal.*
+  <div style="border:1px solid #ccc;border-radius:10px;width:280px;padding:15px;background:#fff;box-shadow:2px 2px 6px rgba(0,0,0,0.1);">
+    <h3 style="color:#0366d6;">🛡️ Hacking Ético</h3>
+    <p>Auditorías, análisis de vulnerabilidades y pruebas de penetración.</p>
+    <a href="hacking.md" style="text-decoration:none;color:white;background:#0366d6;padding:8px 12px;border-radius:6px;">Ver proyectos</a>
+  </div>
+
+  <div style="border:1px solid #ccc;border-radius:10px;width:280px;padding:15px;background:#fff;box-shadow:2px 2px 6px rgba(0,0,0,0.1);">
+    <h3 style="color:#0366d6;">🔍 Forense Digital</h3>
+    <p>Análisis de evidencias, imágenes de disco y recuperación de información.</p>
+    <a href="forense.md" style="text-decoration:none;color:white;background:#0366d6;padding:8px 12px;border-radius:6px;">Ver proyectos</a>
+  </div>
+
+  <div style="border:1px solid #ccc;border-radius:10px;width:280px;padding:15px;background:#fff;box-shadow:2px 2px 6px rgba(0,0,0,0.1);">
+    <h3 style="color:#0366d6;">⚙️ Sistemas Seguros</h3>
+    <p>Endurecimiento de sistemas, copias de seguridad y gestión de usuarios.</p>
+    <a href="sistemas.md" style="text-decoration:none;color:white;background:#0366d6;padding:8px 12px;border-radius:6px;">Ver proyectos</a>
+  </div>
+
+</div>
