@@ -29,7 +29,7 @@ Aquí se recopilan los trabajos y prácticas de las diferentes asignaturas del c
   <div style="border:1px solid #444;border-radius:10px;padding:20px;background:#1a1a1a;box-shadow:2px 2px 6px rgba(0,0,0,0.5);width:100%;max-width:300px;text-align:center;">
     <h3 style="color:#32cd32;">🧱 Bastionado de Redes y Sistemas</h3>
     <p>Endurecimiento de configuraciones y protección de infraestructuras críticas.</p>
-    <a href="bastionado/" style="text-decoration:none;color:white;background:#32cd32;padding:8px 12px;border-radius:6px;">Ver proyectos</a>
+    <a href="BRS/" style="text-decoration:none;color:white;background:#32cd32;padding:8px 12px;border-radius:6px;">Ver proyectos</a>
   </div>
 
   <div style="border:1px solid #444;border-radius:10px;padding:20px;background:#1a1a1a;box-shadow:2px 2px 6px rgba(0,0,0,0.5);width:100%;max-width:300px;text-align:center;">
