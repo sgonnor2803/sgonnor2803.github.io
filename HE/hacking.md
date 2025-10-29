@@ -1,3 +1,7 @@
+---
+layout: default
+title: "Hacking Ético - Proyectos"
+---
 # 🛡️ Hacking Ético - Proyectos
 
 Aquí se recogen los proyectos realizados en la asignatura de Hacking Ético.
