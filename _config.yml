@@ -1,3 +1,5 @@
 title: "Proyectos - Curso de Ciberseguridad"
 description: "Repositorio de trabajos y prácticas del Curso de Especialización en Ciberseguridad"
 theme: jekyll-theme-minimal
+logo: /assets/logo.png
+show_downloads: false
