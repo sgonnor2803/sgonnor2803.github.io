@@ -25,6 +25,4 @@ Aquí se recogen los proyectos realizados en la asignatura de Hacking Ético.
 
 ---
 
-<div style="margin-top:30px;">
-  <a href="../index.md" style="text-decoration:none; color:#00bfff;">⬅ Volver al índice principal</a>
-</div>
+[Volver al índice principal](../index.md)
