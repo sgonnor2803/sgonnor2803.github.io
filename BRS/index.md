@@ -25,4 +25,4 @@ Aquí se recogen los proyectos realizados en la asignatura de Bastionado de Rede
 
 ---
 
-[Volver al índice principal](../index.md)
+[Volver](../index.md)
