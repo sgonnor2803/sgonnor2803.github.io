@@ -25,4 +25,4 @@ Aquí se recogen los proyectos realizados en la asignatura de Hacking Ético.
 
 ---
 
-[Volver al índice principal](../index.md)
+[Volver](../index.md)
