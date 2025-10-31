@@ -1,0 +1,23 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2025-10-31T15:40:47+01:00",
+  "id": "guia-bastionado-bios-uefi",
+  "duration": 0,
+  "title": "Guía de Bastionado de BIOS/UEFI",
+  "authors": "Sergio González Noria",
+  "summary": "Guía de Bastionado BIOS/UEFI",
+  "source": ".\\codelab.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "guia"
+  ],
+  "tags": [],
+  "feedback": "https://github.com/sgonnor2803",
+  "url": "guia-bastionado-bios-uefi"
+}
