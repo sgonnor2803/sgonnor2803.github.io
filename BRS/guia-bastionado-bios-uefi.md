@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Bastionado de BIOS/UEFI"
+---
+
 # Guía de Bastionado de BIOS/UEFI
 
 ## Introducción
