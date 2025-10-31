@@ -1,0 +1,148 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Guía de Bastionado de BIOS/UEFI</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="guia-bastionado-bios-uefi"
+                  title="Guía de Bastionado de BIOS/UEFI"
+                  environment="web"
+                  feedback-link="https://github.com/sgonnor2803">
+    
+      <google-codelab-step label="Introducción" duration="0">
+        <p>La BIOS/UEFI son los primeros componentes que se ejecutan al encender un ordenador. Su función es reconocer el hardware instalado y determinar desde qué dispositivo se iniciará el sistema operativo.</p>
+<p>Configurar correctamente la BIOS/UEFI es una medida fundamental para reforzar la seguridad del equipo, ya que permite controlar el acceso físico, evitar arranques no autorizados y proteger la integridad del sistema desde el momento del encendido.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Contraseñas en BIOS/UEFI" duration="0">
+        <p>El uso de contraseñas en la BIOS/UEFI es una de las medidas más sencillas y efectivas para proteger un dispositivo. Estas contraseñas permiten restringir el acceso tanto al arranque del sistema como a la propia configuración del firmware, evitando modificaciones no autorizadas o el uso del equipo por personas sin permiso.</p>
+<p>Para ello, primero accederemos a la BIOS/UEFI de mi equipo <strong><em>HP Victus</em></strong> mediante la tecla &#34;<strong>F10</strong>&#34;. <img alt="Imagen Acceso BIOS/UEFI" src="img\\b53da4f08deff71f.jpg"></p>
+<p>A partir de aqui, configuraremos los siguientes apartados de contraseñas de la BIOS/UEFI.</p>
+<h2 is-upgraded>Contraseña de usuario o Power-On</h2>
+<p>La <strong>contraseña de usuario o Power-On</strong> se solicita al encender el equipo y evita que personas no autorizadas puedan iniciar el sistema. Esta medida añade una capa de seguridad adicional, ya que impide el acceso incluso antes de que se cargue el sistema operativo.</p>
+<p>Para configurar dicha contraseña en el equipo, estando en la BIOS/UEFI, debemos de ir al apartado <strong><em>Seguridad</em></strong> y hacer &#34;<strong>Enter</strong>&#34; en la opción <strong><em>Contraseña de arranque</em></strong>. <img alt="Imagen Contraseña usuario" src="img\\d8734cc4339c2d69.jpg"></p>
+<p>En la siguiente &#34;<strong><em>ventana</em></strong>&#34; definiremos la contraseña de usuario, tiene que ser una contraseña robusta para mayor seguridad. Ejemplo: &#34;<strong><em>co3RCl9BBWaGLJ7TjO</em></strong>&#34;</p>
+<p class="image-container"><img alt="Imagen Contraseña usuario 2" src="img\\f510d15f91d75d7f.jpg"></p>
+<p class="image-container"><img alt="Imagen Contraseña usuario 3" src="img\\462ed30129e8505e.jpg"></p>
+<p class="image-container"><img alt="Imagen Contraseña usuario 4" src="img\\36336ac8051af173.jpg"></p>
+<p>Como podemos ver, se ha configurado la contraseña de usuario o Power-On correctamente.</p>
+<p>Una vez realizado lo anteriormente, podemos hacer una prueba de la contraseña de usuario. Solo debemos de apagar el equipo, en el apartado <strong><em>Salir</em></strong> y en la opción <strong>Guardar cambios y salir</strong>.</p>
+<p class="image-container"><img alt="Imagen Contraseña usuario 5" src="img\\d7fb33abf6b371bb.jpg"></p>
+<p>Al iniciar el equipo, primeramente pedirá la contraseña de usuario. Se mostrará de la siguiente manera:</p>
+<p class="image-container"><img alt="Imagen Contraseña usuario 6" src="img\\5223ad84f60c0283.jpg"></p>
+<p>Y con esto hemos configurado la contraseña de usuario o Power-On correctamente en nuestro equipo.</p>
+<h2 is-upgraded>Contraseña de administrador</h2>
+<p>La <strong>contraseña de administrador o Supervisor</strong> protege el acceso a la configuración interna de la BIOS/UEFI. Gracias a ella, solo los usuarios autorizados pueden realizar cambios en los parámetros del sistema, como el orden de arranque o las opciones de seguridad.</p>
+<p>Para configurar dicha contraseña en el equipo, debemos de ir al apartado <strong><em>Seguridad</em></strong> y hacer <strong>Enter</strong> en <strong><em>Contraseña de administrador</em></strong>. <img alt="Imagen Contraseña administrador" src="img\\ea9190954c4ffec2.jpg"></p>
+<p>En la siguiente &#34;<strong><em>ventana</em></strong>&#34; introduciremos la contraseña del administrador, tiene que ser una contraseña robusta para mayor seguridad. Ejemplo: &#34;<strong><em>4CvEZdqs2xFwiWKjni</em></strong>&#34;</p>
+<p class="image-container"><img alt="Imagen Contraseña administrador 2" src="img\\c31f65a1502b5914.jpg"></p>
+<p class="image-container"><img alt="Imagen Contraseña administrador 3" src="img\\6a50669b0e5d786f.jpg"></p>
+<p class="image-container"><img alt="Imagen Contraseña administrador 4" src="img\\7ad6199ce8d1c012.jpg"></p>
+<p>Como podemos ver, se ha configurado la contraseña de administrador correctamente.</p>
+<p>Una vez realizado lo anteriormente, podemos hacer una prueba de la contraseña de administrador. Solo debemos de apagar el equipo, en el apartado <strong><em>Salir</em></strong> y en la opción <strong>Guardar cambios y salir</strong>.</p>
+<p class="image-container"><img alt="Imagen Contraseña administrador 5" src="img\\d7fb33abf6b371bb.jpg"></p>
+<p>Al iniciar el equipo, nos pedirá una de las dos contraseñas (usuario o administrador). Dependiendo de cual introduzcamos, deberemos de realizar más pasos o no:</p>
+<ul>
+<li><strong><em>Opción Administrador:</em></strong> Si intentamos acceder a la BIOS/UEFI e introducimos primeramente la contraseña de administrador, podremos acceder directamente a ella.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Contraseña administrador 6" src="img\\b53da4f08deff71f.jpg"></p>
+<ul>
+<li><strong><em>Opción Usuario:</em></strong> Si intentamos acceder a la BIOS/UEFI e introducimos primeramente la contraseña de usuario, más tarde nos pedirá la contraseña de administrador, ya que no podemos acceder con permisos limitados (usuario).</li>
+</ul>
+<p class="image-container"><img alt="Imagen Contraseña administrador 7" src="img\\c0276acf5536e579.jpg"></p>
+<p>En conclusión, deberemos de acceder con la contraseña de administrador a la BIOS/UEFI para poder realizar cualquier configuración.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Control de arranques externos" duration="0">
+        <p>Limitar los arranques desde dispositivos externos, como memorias USB, reduce el riesgo de que se ejecute software no autorizado o malicioso fuera del sistema operativo principal. Esta configuración es esencial para impedir ataques que aprovechan medios extraíbles para eludir medidas de seguridad.</p>
+<p>Para configurar nuestro equipo para que no permita arranques desde dispositivos externos o mediante red, estando en la BIOS/UEFI, debemos de ir al apartado <strong><em>Opciones de arranque</em></strong>.</p>
+<p class="image-container"><img alt="Imagen control arranque" src="img\\2d241a88dd632660.jpg"></p>
+<p>Ahora, debemos de cambiar la opción <strong><em>Arranque USB</em></strong> de &#34;<strong>Activado</strong>&#34; a &#34;<strong>Desactivado</strong>&#34;.</p>
+<p class="image-container"><img alt="Imagen control arranque 2" src="img\\fa6cdd4e54b3fc17.jpg"></p>
+<p>También, debemos de cambiar la opción <strong><em>Arranque de red</em></strong> de &#34;<strong>Activado</strong>&#34; a &#34;<strong>Desactivado</strong>&#34;.</p>
+<p class="image-container"><img alt="Imagen control arranque 3" src="img\\d8ad17950786cb24.jpg"></p>
+<p>Esta sería la configuración final, desactivando tanto el arranque USB como el arranque de red.</p>
+<p class="image-container"><img alt="Imagen control arranque 4" src="img\\53d2e3254744d67.jpg"></p>
+<p>Solo nos queda guardar la configuración desde el apartado <strong><em>Salir</em></strong>, y en la opción <strong>Guardar cambios y salir</strong>.</p>
+<p class="image-container"><img alt="Imagen control arranque 5" src="img\\d7fb33abf6b371bb.jpg"></p>
+<p>Configurado estas opciones, nuestro equipo ya no permitirá arrancar mediante dispositivos externos ni por red.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Orden de arranque seguro" duration="0">
+        <p>El orden de arranque define la prioridad con la que el sistema busca dispositivos para iniciar el sistema operativo. Configurarlo de manera segura asegura que el equipo solo intente arrancar desde unidades confiables, evitando el uso de dispositivos externos o redes que puedan ser manipuladas por un atacante.</p>
+<p>Primero, estando en la BIOS/UEFI, accederemos al apartado <strong><em>Opciones de arranque</em></strong>.</p>
+<p class="image-container"><img alt="Imagen orden arranque" src="img\\2d241a88dd632660.jpg"></p>
+<p>Ahora, al final de este apartado, tenemos una sección llamada &#34;<strong>Orden de arranque UEFI</strong>&#34;, en él iremos configurando el orden de manera segura. El orden más seguro para este equipo sería el siguiente.</p>
+<p class="image-container"><img alt="Imagen orden arranque 2" src="img\\295d35e8c8dcc63b.jpg"></p>
+<p>Este es el orden más seguro, ya que garantiza que el equipo solo arranque desde el disco interno confiable y evita que dispositivos externos o de red puedan usarse para ejecutar software no autorizado o manipular el sistema.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Otras opciones de seguridad" duration="0">
+        <p>Además de las contraseñas y el control del arranque, la BIOS/UEFI ofrece otras funciones de seguridad que complementan el bastionado del sistema. Entre ellas se incluyen <strong>Secure Boot</strong> y <strong>TPM</strong>. Estas opciones ayudan a mantener la integridad del sistema.</p>
+<ul>
+<li><strong><em>Secure Boot</em></strong></li>
+</ul>
+<p>Para habilitar esta función de seguridad, estando en la BIOS/UEFI, debemos de ir al apartado <strong><em>Opciones de arranque</em></strong>.</p>
+<p class="image-container"><img alt="Imagen Secure Boot" src="img\\2d241a88dd632660.jpg"></p>
+<p>Primero debemos de <strong>Cargar las claves predeterminadas de HP</strong> para poder habilitar la opción de <strong>Secure Boot</strong>.</p>
+<p class="image-container"><img alt="Imagen Secure Boot 2" src="img\\cee270fc651d26a5.jpg"></p>
+<p class="image-container"><img alt="Imagen Secure Boot 3" src="img\\e03f9ef214b9c932.jpg"></p>
+<p>Solo nos queda guardar la configuración desde el apartado <strong><em>Salir</em></strong>, y en la opción <strong>Guardar cambios y salir</strong>.</p>
+<p class="image-container"><img alt="Imagen Secure Boot 4" src="img\\d7fb33abf6b371bb.jpg"></p>
+<p>Configurado Secure Boot en UEFI, nuestro equipo solo permitirá arrancar el sistema operativo legítimo, rechazando cualquier software no autorizado.</p>
+<ul>
+<li><strong><em>TPM</em></strong> (Trusted Platform Module)</li>
+</ul>
+<p>Para habilitar esta función de seguridad, estando en la BIOS/UEFI, debemos de ir al apartado <strong><em>Seguridad</em></strong>.</p>
+<p class="image-container"><img alt="Imagen TPM" src="img\\2572e84a1789c708.jpg"></p>
+<p>Ahora, debemos de cambiar la opción <strong><em>Dispositivo TPM</em></strong> de &#34;<strong>Oculto</strong>&#34; a &#34;<strong>Disponible</strong>&#34;.</p>
+<p class="image-container"><img alt="Imagen TPM 2" src="img\\7a44c7b99b48ffeb.jpg"></p>
+<p>Solo nos queda guardar la configuración desde el apartado <strong><em>Salir</em></strong>, y en la opción <strong>Guardar cambios y salir</strong>.</p>
+<p class="image-container"><img alt="Imagen TPM 3" src="img\\d7fb33abf6b371bb.jpg"></p>
+<p>Con el TPM activado, el equipo protege de forma segura las claves de cifrado y los datos sensibles, fortaleciendo la integridad del sistema y garantizando que funciones como Secure Boot o BitLocker funcionen correctamente desde el arranque.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusiones" duration="0">
+        <p>El bastionado de la BIOS/UEFI representa el primer paso para asegurar un equipo de forma integral. Configurar contraseñas, restringir el arranque externo, establecer un orden seguro y activar opciones adicionales como Secure Boot o TPM permite reducir de forma significativa las vulnerabilidades a nivel de firmware y proteger la información del dispositivo desde el inicio.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
