@@ -1,0 +1,293 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Guía de Bastionado del Arranque en Linux</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="guia-bastionado-arranque-linux"
+                  title="Guía de Bastionado del Arranque en Linux"
+                  environment="web"
+                  feedback-link="https://github.com/sgonnor2803">
+    
+      <google-codelab-step label="Introducción" duration="0">
+        <p>Durante el arranque de un sistema Linux, el gestor <strong>GRUB2</strong> es el encargado de iniciar el sistema operativo y definir cómo se realiza este proceso. Sin embargo, si no se encuentra correctamente protegido, puede convertirse en un punto débil de seguridad, ya que un usuario con acceso físico al equipo podría modificar sus opciones y obtener privilegios no autorizados.</p>
+<p>Por ello, resulta fundamental aplicar medidas de protección que impidan la manipulación del arranque y garanticen la integridad del sistema.<br> En esta guía se detallan los pasos necesarios para reforzar la seguridad del proceso de arranque en una distribución <strong>Debian</strong>, configurando distintas opciones de GRUB2 que ayudan a prevenir accesos no deseados y asegurar un arranque confiable.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Contraseña para proteger GRUB2" duration="0">
+        <p>Configurar una contraseña en <strong>GRUB2</strong> permite proteger el proceso de arranque frente a accesos no autorizados. De esta forma, solo los usuarios con privilegios podrán modificar o iniciar el sistema desde opciones avanzadas.</p>
+<ul>
+<li>Para ello, primero vamos a abrir una terminal en nuestro sistema <strong>Debian</strong>.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Password GRUB2 1" src="img\\c21c4a207d387e97.png"></p>
+<p class="image-container"><img alt="Imagen Password GRUB2 2" src="img\\16643dd7566e7016.png"></p>
+<ul>
+<li>Una vez en la terminal, cambiaremos a usuario root para tener permisos totales sobre el sistema.</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">su root
+</code></pre>
+<p class="image-container"><img alt="Imagen Password GRUB2 3" src="img\\ab874eebd354b6b.png"></p>
+<ul>
+<li>Editaremos el archivo de configuración de GRUB2. Ejecutamos el siguiente comando para realizar esa modificación.</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">nano /etc/grub.d/40_custom
+</code></pre>
+<p class="image-container"><img alt="Imagen Password GRUB2 4" src="img\\22c36acf55e5ca0c.png"></p>
+<p class="image-container"><img alt="Imagen Password GRUB2 5" src="img\\23fc3391d9a20bde.png"></p>
+<ul>
+<li>Antes de todo, para mayor protección cifraremos la contraseña, ejemplo: <strong><em>Piq7hCze4nVi</em></strong>, para que no se guarde en texto plano. Para ello, ejecutaremos el siguiente comando (con permisos root) e introduciremos la contraseña dos veces, en una nueva terminal:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">grub-mkpasswd-pbkdf2
+</code></pre>
+<p class="image-container"><img alt="Imagen Password GRUB2 6" src="img\\9affbf3739ecf544.png"></p>
+<ul>
+<li>Ahora que tenemos el hash de la contraseña, modificaremos el anterior archivo definiendo tanto el usuario administrador como la contraseña correspondiente (<strong>hash</strong>). Esta será las credenciales que nos pedirán para acceder al menú protegido del propio GRUB2.</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">set superusers=&#34;root&#34;
+password_pbkdf2 root grub.pbkdf2.sha512.10000.D8BBE80...
+</code></pre>
+<p class="image-container"><img alt="Imagen Password GRUB2 7" src="img\\da961d3431ae887f.png"></p>
+<ul>
+<li>Una vez introducido los cambios en el archivo, guardaremos el archivo con el atajo de teclado <strong><em>Ctrl + O</em></strong> y para salir del archivo usaremos el atajo de teclado <strong><em>Ctrl + X</em></strong>.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Password GRUB2 8" src="img\\58735a892174cab4.png"></p>
+<p>Prueba de que el archivo se ha guardado correctamente, mostrando su contenido con el comando <strong><em>cat</em></strong>.</p>
+<ul>
+<li>Actualizamos GRUB para que lea los cambios que hemos establecido anteriormente. Para ello, ejecutamos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">sudo update-grub
+</code></pre>
+<p class="image-container"><img alt="Imagen Password GRUB2 9" src="img\\99c8334e7576448a.png"></p>
+<ul>
+<li>Por último, solo quedaria reiniciar el equipo y cuando se muestre el menú de GRUB, con solo darle a <strong>enter</strong> para que inicie el sistema, ya nos pedirá las credenciales que hemos definido.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Password GRUB2 10" src="img\\c301125860559945.png"></p>
+<p class="image-container"><img alt="Imagen Password GRUB2 11" src="img\\f9e4da42450f689.png"></p>
+<p>Como podemos ver, nos pedirá las credenciales que hemos definido anteriormente. De esta forma, garantizamos que solo los administradores autorizados puedan modificar o iniciar el sistema desde opciones avanzadas, reforzando así la seguridad del arranque.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Copia de seguridad de la configuración del arranque" duration="0">
+        <p>Realizar una copia de seguridad de los archivos de configuración de GRUB2 es una medida preventiva esencial. Permite restaurar el arranque en caso de errores o configuraciones incorrectas que impidan iniciar el sistema.</p>
+<ul>
+<li>Para ello, partiendo desde una terminal con permisos <strong>root</strong> (mostrado anteriormente), realizaremos los siguientes pasos para realizar dichas copias de seguridad de la configuración del arranque.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Copia Seguridad Arranque 1" src="img\\ab874eebd354b6b.png"></p>
+<ul>
+<li>Primero, vamos a crear un directorio donde almacenaremos las copias de seguridad. Por ejemplo, crearé un directorio <strong><em>backups_grub</em></strong> en la ruta <strong><em>/root/</em></strong>. Para ello, ejecutamos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">mkdir /root/backups_grub
+</code></pre>
+<p class="image-container"><img alt="Imagen Copia Seguridad Arranque 2" src="img\\b68056c71339b927.png"></p>
+<ul>
+<li>Ahora, crearemos la copia de seguridad de los archivos de configuración del arranque (<strong>GRUB</strong>). Ejecutaremos los siguiente comando primero para copiar dichos archivos de configuración al directorio que hemos creado:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">cp /etc/default/grub /root/backups_grub/
+cp -r /etc/grub.d /root/backups_grub/
+</code></pre>
+<p class="image-container"><img alt="Imagen Copia Seguridad Arranque 3" src="img\\675145a9ccd375d6.png"></p>
+<p class="image-container"><img alt="Imagen Copia Seguridad Arranque 4" src="img\\8ff911ce2b1cba12.png"></p>
+<p>En la última imágen, se muestran los archivos que hemos copiado en el directorio de <strong>backups_grub</strong>.</p>
+<ul>
+<li>Por último, crearemos el archivo comprimido, en el directorio <strong><em>/root/</em></strong>, que contendrá toda la configuración actual del arranque. Para ello, ejecutaremos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">tar -czvf /root/backups_grub_$(date +%F).tar.gz /root/backups_grub
+</code></pre>
+<p class="image-container"><img alt="Imagen Copia Seguridad Arranque 5" src="img\\41603ef910fb199b.png"></p>
+<p class="image-container"><img alt="Imagen Copia Seguridad Arranque 6" src="img\\596657e370c6a2ba.png"></p>
+<p>Mantener una copia de seguridad actualizada de la configuración del arranque permite restaurar rápidamente el sistema ante cualquier fallo o error de configuración, garantizando la continuidad y estabilidad del entorno.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ajuste de permisos del archivo de configuración" duration="0">
+        <p>Una vez configurada la contraseña en <strong>GRUB2</strong>, es fundamental proteger el archivo donde se almacena esta información para evitar que otros usuarios puedan leerlo o modificarlo sin autorización. Restringir los permisos de acceso garantiza que solo el usuario <strong>root</strong> pueda realizar cambios en la configuración del gestor de arranque.</p>
+<ul>
+<li>Primero, accedemos a una terminal con permisos root como lo hemos comentado anteriormente en esta guía.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Permisos Archivo Configuración 1" src="img\\ab874eebd354b6b.png"></p>
+<ul>
+<li>Ahora, verificamos los permisos actuales que tiene el archivo de configuración <strong><em>/etc/grub.d/40_custom</em></strong>. Para ello, ejecutamos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">ls -l /etc/grub.d/40_custom
+</code></pre>
+<p class="image-container"><img alt="Imagen Permisos Archivo Configuración 2" src="img\\363f48ea598191cb.png"></p>
+<ul>
+<li>Los permiso recomendados para este archivo de configuración seria 700 (rwx——). Esto quiere decir, todos los permisos tanto lectura/escritura/ejecución para el propietario (<strong>root</strong>), y para los demás ningún permiso en este archivo. Para ello, ejecutamos el siguiene comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">chmod 700 /etc/grub.d/40_custom
+</code></pre>
+<p class="image-container"><img alt="Imagen Permisos Archivo Configuración 3" src="img\\548860831c598b6f.png"></p>
+<ul>
+<li>También podemos reforzar la seguridad cambiando el propietario/grupo del archivo, si el propietario no es <strong>root</strong>. Para ello, ejecutamos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">chown root:root /etc/grub.d/40_custom
+</code></pre>
+<p class="image-container"><img alt="Imagen Permisos Archivo Configuración 4" src="img\\c94b214f48b94a44.png"></p>
+<ul>
+<li>Por último, comprobamos que tanto los permiso como el propietario/grupo sea el que hemos definido anteriormente. Para ello, ejecutamos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">ls -l /etc/grub.d/40_custom
+</code></pre>
+<p class="image-container"><img alt="Imagen Permisos Archivo Configuración 5" src="img\\d1d470f8233271b0.png"></p>
+<p>De esta manera, el archivo que contiene la configuración y la contraseña cifrada de <strong>GRUB2</strong> queda totalmente protegido frente a modificaciones no autorizadas, reforzando así la seguridad global del proceso de arranque.</p>
+<p>Además, se recomienda aplicar una política de permisos al resto de archivos de configuración del <strong>GRUB2</strong>.</p>
+<pre><code language="language-bash" class="language-bash">chmod 700 /etc/grub.d
+chmod 600 /etc/default/grub
+chmod 600 /boot/grub/grub.cfg
+chown -R root:root /etc/grub.d /etc/default/grub /boot/grub/grub.cfg
+</code></pre>
+<p>De esta forma, aseguramos que todos los archivos sensibles de GRUB2 estén protegidos contra modificaciones no autorizadas, manteniendo un control estricto sobre quién puede alterar la configuración del arranque.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ocultar el menú de GRUB2" duration="0">
+        <p>Ocultar el menú de GRUB2 es una medida adicional de seguridad que impide que un usuario no autorizado modifique o acceda a opciones avanzadas durante el arranque del sistema. De esta forma, el equipo iniciará directamente el sistema operativo sin mostrar el menú de GRUB, reduciendo la posibilidad de manipulación.</p>
+<ul>
+<li>En primer lugar, accederemos a una terminal con permisos <strong>root</strong> como en los anteriores apartados de esta guía.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Ocultar Menu 1" src="img\\ab874eebd354b6b.png"></p>
+<ul>
+<li>Ahora, abriremos el archivo de configuración principal de GRUB2, se encuentra en <strong><em>/etc/default/grub</em></strong>. Para ello, ejecutaremos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">nano /etc/default/grub
+</code></pre>
+<p class="image-container"><img alt="Imagen Ocultar Menu 2" src="img\\c3c33641234dd534.png"></p>
+<p class="image-container"><img alt="Imagen Ocultar Menu 3" src="img\\2629fa7c2bb07f35.png"></p>
+<ul>
+<li>Una vez que hemos accedido al archivo, localizamos la siguiente línea, que es la que vamos a modificar:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">GRUB_TIMEOUT=5
+</code></pre>
+<p class="image-container"><img alt="Imagen Ocultar Menu 4" src="img\\aa9166175889f044.png"></p>
+<ul>
+<li>Una vez localizada la línea, modificaremos el valor de la siguiente manera:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">GRUB_TIMEOUT=0
+</code></pre>
+<p class="image-container"><img alt="Imagen Ocultar Menu 5" src="img\\812e08eb66ad09de.png"></p>
+<p>Con esta configuración, el menú permanecerá oculto y el sistema arrancará automáticamente sin mostrar opciones al usuario.</p>
+<ul>
+<li>Una vez introducido los cambios en el archivo, guardaremos el archivo con el atajo de teclado <strong><em>Ctrl + O</em></strong> y para salir del archivo usaremos el atajo de teclado <strong><em>Ctrl + X</em></strong>.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Ocultar Menu 6" src="img\\ef32b78820c8bf31.png"></p>
+<p>Prueba de que el archivo se ha guardado correctamente, mostrando su contenido con el comando <strong><em>cat</em></strong>.</p>
+<ul>
+<li>Actualizamos GRUB para que lea los cambios que hemos establecido anteriormente. Para ello, ejecutamos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">sudo update-grub
+</code></pre>
+<p class="image-container"><img alt="Imagen Ocultar Menu 7" src="img\\99c8334e7576448a.png"></p>
+<ul>
+<li>Por último, comprobamos que al reiniciar el sistema no nos mostrará el menú de GRUB2.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Ocultar Menu 8" src="img\\c301125860559945.png"></p>
+<p class="image-container"><img alt="Imagen Ocultar Menu 9" src="img\\d2243550b255d6cc.png"></p>
+<p>Tras reiniciar el sistema, el arranque se realizará automáticamente sin mostrar el menú de GRUB2 y mostrará la pantalla para acceder mediante las credenciales que hemos configurado en los primeros apartados de esta guía, dificultando el acceso a las opciones avanzadas para usuarios no autorizados.</p>
+<p>Con esta configuración, el proceso de arranque se vuelve más discreto y seguro, reduciendo la exposición del menú de GRUB2 y limitando las posibilidades de manipulación por parte de usuarios no autorizados.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Otras medidas complementarias" duration="0">
+        <p>Además de proteger <strong>GRUB2</strong>, podemos aplicar medidas adicionales que fortalecen la seguridad del arranque, impidiendo manipulaciones o accesos no autorizados al sistema.</p>
+<h2 is-upgraded>Protección del directorio <strong><em>/boot</em></strong></h2>
+<p>El directorio <strong><em>/boot</em></strong> contiene los archivos críticos del arranque, como el <strong>kernel</strong>, el <strong>initramfs</strong> y la configuración de <strong>GRUB2</strong>. Si un atacante logra modificar estos archivos, podría alterar completamente el comportamiento del sistema o inyectar código malicioso. Para evitarlo, debemos restringir los permisos de acceso a este directorio, garantizando que solo el usuario root pueda gestionarlo.</p>
+<ul>
+<li>En primer lugar, accederemos a una terminal con permisos <strong>root</strong> como en los anteriores apartados de esta guía.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Proteccion Boot 1" src="img\\ab874eebd354b6b.png"></p>
+<ul>
+<li>Ahora, modificamos los permisos del directorio <strong><em>/boot</em></strong> para que solo el administrador (<strong>root</strong>) tenga acceso total. Para ello, ejecutamos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">chmod -R 700 /boot
+</code></pre>
+<p class="image-container"><img alt="Imagen Proteccion Boot 2" src="img\\bc58486cb5a63f50.png"></p>
+<ul>
+<li>Tambien aseguramos que el propietario/grupo del directorio sean <strong>root</strong>. Para ello, ejecutamos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">chown -R root:root /boot
+</code></pre>
+<p class="image-container"><img alt="Imagen Proteccion Boot 3" src="img\\c8c82e1d4e119542.png"></p>
+<ul>
+<li>Por último, comprobamos que los permisos y el propietario sean los correctos:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">ls -ld /boot
+</code></pre>
+<p class="image-container"><img alt="Imagen Proteccion Boot 4" src="img\\f4290d01e9ebe91b.png"></p>
+<p>Con estos ajustes, se impide que otros usuarios del sistema puedan listar, modificar o eliminar archivos dentro de <strong>/boot</strong>, reduciendo el riesgo de manipulación del arranque o sustitución del kernel.</p>
+<h2 is-upgraded>Desactivar el arranque desde otros sistmas o dispositvos externos</h2>
+<p>Otra medida importante consiste en impedir que GRUB detecte o muestre otros sistemas operativos (por ejemplo, Windows o particiones externas). Esto evita que un usuario pueda arrancar el equipo desde otro sistema y manipular los archivos del disco.</p>
+<ul>
+<li>En primer lugar, accederemos a una terminal con permisos <strong>root</strong> como en los anteriores apartados de esta guía.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Desactivar Arranque Dispositivos 1" src="img\\ab874eebd354b6b.png"></p>
+<ul>
+<li>Ahora, editamos el archivo de configuración de GRUB (<strong><em>/etc/default/grub</em></strong>). Para ello, ejecutamos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">nano /etc/default/grub
+</code></pre>
+<p class="image-container"><img alt="Imagen Desactivar Arranque Dispositivos 2" src="img\\c42319bf489685d1.png"></p>
+<p class="image-container"><img alt="Imagen Desactivar Arranque Dispositivos 3" src="img\\13472b1a480aa529.png"></p>
+<ul>
+<li>Añadimos (o modificamos si ya existe) la siguiente línea:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">GRUB_DISABLE_OS_PROBER=true
+</code></pre>
+<p class="image-container"><img alt="Imagen Desactivar Arranque Dispositivos 4" src="img\\e7fbb9d6ff1b71c8.png"></p>
+<ul>
+<li>Una vez introducido los cambios en el archivo, guardaremos el archivo con el atajo de teclado <strong><em>Ctrl + O</em></strong> y para salir del archivo usaremos el atajo de teclado <strong><em>Ctrl + X</em></strong>.</li>
+</ul>
+<p class="image-container"><img alt="Imagen Desactivar Arranque Dispositivos 5" src="img\\7f6b737bd41a5e4b.png"></p>
+<p>Prueba de que el archivo se ha guardado correctamente, mostrando su contenido con el comando <strong><em>cat</em></strong>.</p>
+<ul>
+<li>Actualizamos GRUB para que lea los cambios que hemos establecido anteriormente. Para ello, ejecutamos el siguiente comando:</li>
+</ul>
+<pre><code language="language-bash" class="language-bash">sudo update-grub
+</code></pre>
+<p class="image-container"><img alt="Imagen Desactivar Arranque Dispositivos 6" src="img\\99c8334e7576448a.png"></p>
+<p>Con esto, GRUB2 dejará de buscar y mostrar otros sistemas operativos o discos externos durante el arranque, reduciendo las vías de acceso al equipo. <br> Aplicando ambas medidas, el arranque del sistema queda mucho más protegido: el contenido de /boot no puede modificarse sin privilegios explícitos y se evita que GRUB cargue sistemas ajenos o ubicados en medios externos.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Conclusiones" duration="0">
+        <p>Con esta guía hemos reforzado la seguridad del arranque en Linux, protegiendo una de las partes más críticas del sistema. Al establecer una contraseña en GRUB2, restringir los permisos de sus archivos de configuración, ocultar el menú de arranque y proteger el directorio /boot, logramos evitar que usuarios no autorizados puedan modificar o acceder a opciones del sistema durante el inicio.</p>
+<p>Además, al desactivar el arranque desde otros sistemas o dispositivos externos, se limita la posibilidad de manipulación mediante medios externos, reduciendo aún más los riesgos de acceso físico no autorizado.</p>
+<p>En conjunto, todas estas medidas hacen que el proceso de arranque sea mucho más seguro y controlado, manteniendo la integridad del sistema y sentando una buena base para seguir aplicando prácticas de bastionado en Linux.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
