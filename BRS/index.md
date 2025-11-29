@@ -25,6 +25,12 @@ Aquí se recogen los proyectos realizados en la asignatura de Bastionado de Rede
       <a href="guia-bastionado-arranque-linux/index.html" style="text-decoration:none; color:white; background:#32cd32; padding:8px 12px; border-radius:6px;">Ver proyecto</a>
   </div>
 
+  <div style="border:1px solid #444; border-radius:10px; padding:20px; background:#1a1a1a; box-shadow:2px 2px 6px rgba(0,0,0,0.5); width:100%; max-width:300px; text-align:center;">
+      <h3 style="color:#32cd32;">Proyecto 2: La red dividida</h3>
+      <p>Segmentación de una red mediante VLANs, subnetting VLSM y enrutamiento router-on-a-stick. Incluye guía técnica y gemelo digital en Packet Tracer.</p>
+      <a href="guia-configuracion-red/index.html" style="text-decoration:none; color:white; background:#32cd32; padding:8px 12px; border-radius:6px;">Ver proyecto</a>
+  </div>
+
   <!-- Puedes añadir más proyectos duplicando este bloque -->
 
 </div>
